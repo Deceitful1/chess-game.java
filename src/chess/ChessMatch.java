@@ -47,6 +47,14 @@ public class ChessMatch
         placeNewPiece('d', 8, new King(board, Color.BLACK));
 
     }
+
+    public boolean[][]  possilbleMoves(ChessPosition chessPosition)
+    {
+        Position position = chessPosition.toPosition();
+        validateSourcePosition(position);
+        return board.piece(position).possibleMoves();
+    }
+
     public ChessPiece perfomChessMove(ChessPosition sourcePosition, ChessPosition targetPosition)
     {
         Position source = sourcePosition.toPosition();
