@@ -45,6 +45,10 @@ public class Main
                 System.out.println(i.getMessage());
                 sc.nextLine();
             }
+            catch (ArrayIndexOutOfBoundsException a)
+            {
+                System.out.println(a.getMessage());
+            }
 
         }
 
