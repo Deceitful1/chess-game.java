@@ -1,11 +1,10 @@
 package application;
 
+import chess.ChessMatch;
 import chess.ChessPiece;
 import chess.ChessPosition;
 import chess.Color;
 
-import java.awt.*;
-import java.awt.event.InputEvent;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -50,6 +49,14 @@ public class UI
         }
     }
 
+    public static void printMatch(ChessMatch chessMatch)
+    {
+        printBoard(chessMatch.getPieces());
+        System.out.println();
+        System.out.println("turno: " + chessMatch.getTurn());
+        System.out.println("esperando jogador: " + chessMatch.getCurrentPlayer());
+    }
+
 
     public static void printBoard(ChessPiece[][] pieces)
     {
@@ -65,8 +72,7 @@ public class UI
 
     private static void printPiece(ChessPiece piece, Boolean background)
     {
-        if(background)
-        {
+        if (background) {
             System.out.print(ANSI_BLUE_BACKGROUND);
         }
         if (piece == null) {
@@ -94,6 +100,7 @@ public class UI
         System.out.println("  a b c d e f g h");
 
     }
+
 }
 
 
