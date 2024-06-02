@@ -33,12 +33,6 @@ public class UI
     public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
     public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
-    public static void clearScreen()
-    {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-    }
-
 
     public static ChessPosition readChessPosition(Scanner sc)
     {
@@ -59,10 +53,18 @@ public class UI
         printCapturedPieces(captured);
         System.out.println();
         System.out.println("turno: " + chessMatch.getTurn());
-        System.out.println("esperando jogador: " + chessMatch.getCurrentPlayer());
-        if(chessMatch.getCheck())
+        if (!chessMatch.getCheckMate()) {
+
+
+            System.out.println("esperando jogador: " + chessMatch.getCurrentPlayer());
+            if (chessMatch.getCheck()) {
+                System.out.println("CHEQUE!");
+            }
+        }
+        else
         {
-            System.out.println("CHEQUE!");
+            System.out.println("XEQUEMATE!");
+            System.out.println("Vencedor:" + chessMatch.getCurrentPlayer());
         }
     }
 
@@ -109,6 +111,7 @@ public class UI
         System.out.println("  a b c d e f g h");
 
     }
+
     private static void printCapturedPieces(List<ChessPiece> captured)
     {
         List<ChessPiece> white = captured.stream().filter(x -> x.getColor() == Color.WHITE).collect(Collectors.toList());
@@ -123,6 +126,14 @@ public class UI
         System.out.print(ANSI_BLACK);
         System.out.println(Arrays.toString(black.toArray()));
         System.out.print(ANSI_RESET);
+
+    }
+
+    public static void clearScreen()
+    {
+        for (int i = 0; i < 30; i++) {
+            System.out.println();
+        }
 
     }
 
