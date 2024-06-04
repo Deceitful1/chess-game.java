@@ -30,7 +30,7 @@ public class Main
 
                 ChessPosition source = UI.readChessPosition(sc);
 
-                boolean[][] possibleMoves = chessMatch.possilbleMoves(source);
+                boolean[][] possibleMoves = chessMatch.possibleMoves(source);
               UI.clearScreen();
                 UI.printBoard(chessMatch.getPieces(), possibleMoves);
 
@@ -39,10 +39,15 @@ public class Main
                 System.out.print("Target ");
                 ChessPosition target = UI.readChessPosition(sc);
 
-                ChessPiece capturedPiece = chessMatch.perfomChessMove(source, target);
+                ChessPiece capturedPiece = chessMatch.performChessMove(source, target);
                 if(capturedPiece != null)
                 {
                     captured.add(capturedPiece);
+                }
+                if (chessMatch.getPromoted() != null) {
+                    System.out.print("Enter piece for promotion (B/N/R/Q): ");
+                    String type = sc.nextLine().toUpperCase();
+                    chessMatch.replacePromotedPiece(type);
                 }
             } catch (ChessException e) {
                 System.out.println(e.getMessage());
